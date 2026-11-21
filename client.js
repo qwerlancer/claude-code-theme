@@ -277,6 +277,7 @@ window.__ModuleLoader__.load({
  *   assistant   .hWmORq_
  *   running     .EvIC1a_
  *   tools       .o3BgMG_  .CY-8Ka_  .DXqwVW_  .ztWv_q_
+ *   model pill  ._7KE1Ra_  (composer "Model · effort" trigger; hidden)
  * Fallbacks that do not depend on hashes: [data-message-bubble],
  * [class*="_markdown_"], [role="dialog"|"menu"|"tooltip"], tokens.
  * ===================================================================== */
@@ -619,6 +620,13 @@ html[data-cc-theme="on"] .uV2eYG_notice {
 html[data-cc-theme="on"] .uV2eYG_dock {
   color: var(--cc-faint);
   font-size: 11px;
+}
+/* The Claude Code CLI has no model picker in the prompt row, so the shipped
+ * "model · effort" pill is hidden while the skin is on. This is pure CSS: the
+ * slot occupant, its handlers and the /model command are untouched, and
+ * turning the toggle off brings the pill straight back. */
+html[data-cc-theme="on"] ._7KE1Ra_root {
+  display: none !important;
 }
 
 /* ---- conversation header / options --------------------------------- */

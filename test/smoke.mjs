@@ -198,6 +198,14 @@ assert.ok(
   !/\.pI_x6G_overlayLayer\s*\{[^}]*rgba\(0,\s*0,\s*0/.test(skin.textContent),
   'shell overlay layer never painted with a black veil',
 );
+assert.ok(
+  /html\[data-cc-theme="on"\]\s+\._7KE1Ra_root\s*\{[^}]*display:\s*none/.test(skin.textContent),
+  'composer model pill is hidden while the skin is on',
+);
+assert.ok(
+  !/^\._7KE1Ra_root\s*\{/m.test(skin.textContent),
+  'model pill rule stays scoped to the skin attribute',
+);
 assert.ok(!skin.textContent.includes('</style>'));
 assert.equal(document.documentElement.attributes['data-cc-theme'], 'on');
 assert.equal(document.title, 'DSH', 'apply does not touch the title');
