@@ -37,33 +37,29 @@ v1 key `dsh.plugin.claude-code-theme` is intentionally inert.
 
 ## Install
 
-```sh
-# in a DSH session (plugin_manager asks for approval once)
-plugin_manager action=install_bundle target=/absolute/path/to/claude-code-theme
-```
-
-Then reload the Web UI. The skin is on by default.
-
-### Install on another machine
-
-DSH does not sync plugins through the DeepSeek account: the install lives in
-that machine's own `~/.dsh/profiles/<profile>` and the toggle in the browser's
-`localStorage`. Install it once per machine:
+One command, on every machine:
 
 ```sh
-# the repository is public; only `git` needs to be on PATH
+# public repository; needs `git` on PATH and no credentials
 plugin_manager action=install_bundle \
   target=https://github.com/qwerlancer/claude-code-theme#c2aed8643e3c92001c66167b111998afb9aaa2e4
 ```
 
-Then restart `dsh web` (bundle installs ask for a restart) and reload the page.
-A local checkout works the same way: `target=/absolute/path/to/claude-code-theme`.
+The manager asks for approval once, installs the bundle and asks for a `dsh web`
+restart; restart it and reload the page. The skin is on by default.
 
-The install points at an immutable commit SHA rather than a tag, because a tag
-can be re-pointed while a SHA cannot; the SHA above is the v2.1.3 look. To
-update, replace it with the newer commit (a fresh clone's `git rev-parse HEAD`)
-and reinstall. A tag reference such as `#v2.1.3` still works, but a tag may be
-moved later, so the SHA is the safe default. CSS-module hashes are tied to the DSH Web build it was written against
+DSH keeps plugins in each machine's own `~/.dsh/profiles/<profile>` and the
+toggle in the browser's `localStorage`, so the DeepSeek account does not sync
+this plugin: run the same command on every machine whose Web UI you use. There
+is no second, local-path install to explain - the SHA is immutable, so every
+machine gets byte-identical files. To update, replace the SHA with the newer
+commit (a fresh clone's `git rev-parse HEAD`) and reinstall; `#v2.1.3` also
+works, but a tag can be re-pointed while a SHA cannot.
+
+Working on the plugin itself is the one exception: from a checkout, install by
+path (`target=/absolute/path/to/claude-code-theme`) so edits are served live.
+
+CSS-module hashes are tied to the DSH Web build it was written against
 (0.2.2-rc.1), so a different DSH version may need the `HASHED SELECTOR MAP`
 refreshed. `dsh.client.platform` is `web`, so the skin only loads in the Web UI.
 
@@ -71,7 +67,7 @@ refreshed. `dsh.client.platform` is `web`, so the skin only loads in the Web UI.
 > Installs made with 2.0.x were named `@local/claude-code-theme`; if you are
 > migrating from one of those, remove that target first
 > (`plugin_manager action=remove_bundle target=@local/claude-code-theme`), then
-> install again by path, then restart `dsh web`.
+> install again with the command above, then restart `dsh web`.
 
 ## Uninstall / clean rollback
 
