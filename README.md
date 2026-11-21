@@ -51,8 +51,7 @@ that machine's own `~/.dsh/profiles/<profile>` and the toggle in the browser's
 `localStorage`. Install it once per machine:
 
 ```sh
-# the repository is private, so the machine's git must already be authenticated
-# (gh auth login / git credential helper, or gh repo edit --visibility public)
+# the repository is public; only `git` needs to be on PATH
 plugin_manager action=install_bundle \
   target=https://github.com/qwerlancer/claude-code-theme#v2.1.2
 ```
@@ -95,7 +94,7 @@ localStorage key. Removing the bundle reverses all of them.
 ## Version control
 
 This plugin is versioned in Git and every change lands on
-<https://github.com/qwerlancer/claude-code-theme> (private, `main`).
+<https://github.com/qwerlancer/claude-code-theme> (public, `main`).
 
 ```sh
 cd claude-code-theme
