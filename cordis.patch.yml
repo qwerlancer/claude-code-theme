@@ -1,0 +1,3 @@
+- insert:
+    - id: claude-code-theme
+      name: 'claude-code-theme'

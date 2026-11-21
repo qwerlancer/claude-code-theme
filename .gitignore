@@ -1,0 +1,7 @@
+# local backups kept while tuning the skin
+.tmp-*
+.tmp-*/
+
+node_modules/
+*.log
+.DS_Store
