@@ -63,11 +63,6 @@ CSS-module hashes are tied to the DSH Web build it was written against
 (0.2.2-rc.1), so a different DSH version may need the `HASHED SELECTOR MAP`
 refreshed. `dsh.client.platform` is `web`, so the skin only loads in the Web UI.
 
-> Naming: since **v2.1.0** the package is named `claude-code-theme` (unscoped).
-> Installs made with 2.0.x were named `@local/claude-code-theme`; if you are
-> migrating from one of those, remove that target first
-> (`plugin_manager action=remove_bundle target=@local/claude-code-theme`), then
-> install again with the command above, then restart `dsh web`.
 
 ## Uninstall / clean rollback
 
