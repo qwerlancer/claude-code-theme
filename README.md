@@ -53,13 +53,17 @@ that machine's own `~/.dsh/profiles/<profile>` and the toggle in the browser's
 ```sh
 # the repository is public; only `git` needs to be on PATH
 plugin_manager action=install_bundle \
-  target=https://github.com/qwerlancer/claude-code-theme#v2.1.2
+  target=https://github.com/qwerlancer/claude-code-theme#c2aed8643e3c92001c66167b111998afb9aaa2e4
 ```
 
 Then restart `dsh web` (bundle installs ask for a restart) and reload the page.
 A local checkout works the same way: `target=/absolute/path/to/claude-code-theme`.
-The install keeps the version you point at; re-run it with a newer tag to
-update. CSS-module hashes are tied to the DSH Web build it was written against
+
+The install points at an immutable commit SHA rather than a tag, because a tag
+can be re-pointed while a SHA cannot; the SHA above is the v2.1.3 look. To
+update, replace it with the newer commit (a fresh clone's `git rev-parse HEAD`)
+and reinstall. A tag reference such as `#v2.1.3` still works, but a tag may be
+moved later, so the SHA is the safe default. CSS-module hashes are tied to the DSH Web build it was written against
 (0.2.2-rc.1), so a different DSH version may need the `HASHED SELECTOR MAP`
 refreshed. `dsh.client.platform` is `web`, so the skin only loads in the Web UI.
 
