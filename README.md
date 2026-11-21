@@ -141,6 +141,12 @@ theme/locale services and slot registry, so it needs no browser.
   DeepSeek", or the account name when one is set — while the skin is on. Pure
   CSS: the account menu, its handlers and sign-in/out are untouched, and
   turning the skin off brings the label back.
+- Error ink is brighter than the stock red: `--dsw-alias-label-error` and
+  `--dsw-alias-state-error-primary` are `#f29991` (6.49:1 on the `#2d2c27`
+  base) instead of the shipped `#e05b57` (3.87:1, below WCAG AA 4.5:1);
+  `--dsw-alias-state-error-secondary` (`#f8c5be`, 9.14:1) is the lighter
+  glow/tint used in gradients. This is palette only - no error path, handler or
+  copy changes.
 - Dark only by design. The light token slot carries the same dark values, so the
   UI does not switch to a light Claude look when the host preference changes.
 - Other appearance themes should stay disabled; this plugin's token layer and

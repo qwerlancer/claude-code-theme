@@ -177,6 +177,28 @@ assert.ok(/^#[0-9a-f]{6}$/.test(tokens['--dsw-menu-surface-fill'].dark), 'menu m
 assert.ok(/^#[0-9a-f]{6}$/.test(tokens['--dsw-specific-menu'].dark), 'inline menu surface is opaque');
 assert.ok(!names.some((name) => name.startsWith('--dsw-alias-specific-')), 'specific-* tokens use their real names');
 
+// Error text must stay readable on the charcoal base (stock #e05b57 was 3.87:1, under AA).
+const relativeLuminance = (hex) => {
+  const channel = (offset) => {
+    const value = parseInt(hex.slice(offset, offset + 2), 16) / 255;
+    return value <= 0.03928 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4;
+  };
+  return 0.2126 * channel(1) + 0.7152 * channel(3) + 0.0722 * channel(5);
+};
+const contrastRatio = (foreground, background) => {
+  const [lighter, darker] = [relativeLuminance(foreground), relativeLuminance(background)].sort((a, b) => b - a);
+  return (lighter + 0.05) / (darker + 0.05);
+};
+const errorInk = tokens['--dsw-alias-label-error'].dark;
+assert.equal(errorInk, '#f29991', 'error ink is the brightened terracotta red');
+assert.equal(tokens['--dsw-alias-state-error-primary'].dark, '#f29991', 'error primary matches the error ink');
+assert.ok(contrastRatio(errorInk, tokens['--dsw-alias-bg-base'].dark) >= 4.5, 'error ink clears WCAG AA on the base surface');
+assert.ok(
+  contrastRatio(tokens['--dsw-alias-state-error-secondary'].dark, tokens['--dsw-alias-bg-base'].dark) >
+    contrastRatio(errorInk, tokens['--dsw-alias-bg-base'].dark),
+  'error secondary stays the lighter tint above the ink',
+);
+
 const chrome = styleNodes.find((node) => node.id === 'dsh-claude-code-theme-chrome');
 const skin = styleNodes.find((node) => node.id === 'dsh-claude-code-theme-skin');
 assert.ok(chrome, 'chrome stylesheet is injected');
