@@ -206,6 +206,16 @@ assert.ok(
   !/^\._7KE1Ra_root\s*\{/m.test(skin.textContent),
   'model pill rule stays scoped to the skin attribute',
 );
+assert.ok(
+  /html\[data-cc-theme="on"\]\s+\.yHnPSG_trigger\s+\.yHnPSG_label\s*\{[^}]*display:\s*none/.test(
+    skin.textContent,
+  ),
+  'sidebar account label is hidden while the skin is on (avatar icon stays)',
+);
+assert.ok(
+  !/^\.yHnPSG_label\s*\{/m.test(skin.textContent),
+  'account label rule stays scoped to the skin attribute',
+);
 assert.ok(!skin.textContent.includes('</style>'));
 assert.equal(document.documentElement.attributes['data-cc-theme'], 'on');
 assert.equal(document.title, 'DSH', 'apply does not touch the title');

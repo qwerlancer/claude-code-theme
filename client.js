@@ -278,6 +278,7 @@ window.__ModuleLoader__.load({
  *   running     .EvIC1a_
  *   tools       .o3BgMG_  .CY-8Ka_  .DXqwVW_  .ztWv_q_
  *   model pill  ._7KE1Ra_  (composer "Model · effort" trigger; hidden)
+ *   account     .yHnPSG_  (sidebar-foot account trigger; its label hidden)
  * Fallbacks that do not depend on hashes: [data-message-bubble],
  * [class*="_markdown_"], [role="dialog"|"menu"|"tooltip"], tokens.
  * ===================================================================== */
@@ -442,6 +443,13 @@ html[data-cc-theme="on"] .hHd-Xa_buildVersion,
 html[data-cc-theme="on"] .hHd-Xa_localBuildBrand {
   color: var(--cc-faint);
   font-size: 10.5px;
+}
+/* The sidebar-foot account row (settings.launcher occupant) reads like the
+ * Claude Code status line: the avatar icon stays, the "Signed in to …" /
+ * account-name label is hidden. Pure CSS — the account menu, its handlers and
+ * /login are untouched, and turning the toggle off brings the label back. */
+html[data-cc-theme="on"] .yHnPSG_trigger .yHnPSG_label {
+  display: none !important;
 }
 
 /* ---- header --------------------------------------------------------- */

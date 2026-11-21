@@ -108,7 +108,7 @@ theme/locale services and slot registry, so it needs no browser.
   are listed in one `HASHED SELECTOR MAP` block at the top of `skin CSS` in
   `client.js` (`.pI_x6G_`, `.hHd-Xa_`, `.wSkVaW_`, `.pXSMma_`, `.uV2eYG_`,
   `.Sixlwa_`, `.hWmORq_`, `.EvIC1a_`, `.o3BgMG_`, `.CY-8Ka_`, `.DXqwVW_`,
-  `.ztWv_q_`, `._7KE1Ra_`). If a future DSH build renames them, update that map;
+  `.ztWv_q_`, `._7KE1Ra_`, `.yHnPSG_`). If a future DSH build renames them, update that map;
   the
   token palette and hash-free fallbacks (`[data-message-bubble]`,
   `[class*="_markdown_"]`, `[role="dialog"|"menu"|"tooltip"]`) keep the base look.
@@ -117,6 +117,11 @@ theme/locale services and slot registry, so it needs no browser.
   the Claude Code prompt row has no model picker. This is CSS only — the slot
   occupant, its handlers and the `/model` command still work; turn the skin off
   to see the pill again.
+- The account row at the sidebar foot (`settings.launcher` occupant,
+  `.yHnPSG_trigger`) keeps its avatar icon but hides its label — "Signed in to
+  DeepSeek", or the account name when one is set — while the skin is on. Pure
+  CSS: the account menu, its handlers and sign-in/out are untouched, and
+  turning the skin off brings the label back.
 - Dark only by design. The light token slot carries the same dark values, so the
   UI does not switch to a light Claude look when the host preference changes.
 - Other appearance themes should stay disabled; this plugin's token layer and

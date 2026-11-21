@@ -1,6 +1,6 @@
 {
   "name": "claude-code-theme",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "private": true,
   "type": "module",
   "description": "Claude Code CLI appearance theme for the DSH Web UI (dark, appearance only, one-click toggle).",
