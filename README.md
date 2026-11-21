@@ -72,6 +72,23 @@ state beyond: one `<html>` attribute, one always-loaded chrome stylesheet, one
 skin stylesheet while enabled, four slot registrations, one token layer and one
 localStorage key. Removing the bundle reverses all of them.
 
+## Version control
+
+This plugin is versioned in Git and every change lands on
+<https://github.com/qwerlancer/claude-code-theme> (private, `main`).
+
+```sh
+cd claude-code-theme
+git add -A
+git commit -m "describe the appearance change"
+git push
+```
+
+Rules for the workspace copy: commit one logical change per commit, bump
+`version` in `package.json` when the shipped look changes, run
+`node test/smoke.mjs` before committing, and keep local tuning backups
+(`.tmp-*`) out of Git — `.gitignore` already covers them.
+
 ## Files
 
 - `client.js` — palette, chrome CSS, skin CSS, slot occupants, toggle store.
