@@ -44,6 +44,26 @@ plugin_manager action=install_bundle target=/absolute/path/to/claude-code-theme
 
 Then reload the Web UI. The skin is on by default.
 
+### Install on another machine
+
+DSH does not sync plugins through the DeepSeek account: the install lives in
+that machine's own `~/.dsh/profiles/<profile>` and the toggle in the browser's
+`localStorage`. Install it once per machine:
+
+```sh
+# the repository is private, so the machine's git must already be authenticated
+# (gh auth login / git credential helper, or gh repo edit --visibility public)
+plugin_manager action=install_bundle \
+  target=https://github.com/qwerlancer/claude-code-theme#v2.1.2
+```
+
+Then restart `dsh web` (bundle installs ask for a restart) and reload the page.
+A local checkout works the same way: `target=/absolute/path/to/claude-code-theme`.
+The install keeps the version you point at; re-run it with a newer tag to
+update. CSS-module hashes are tied to the DSH Web build it was written against
+(0.2.2-rc.1), so a different DSH version may need the `HASHED SELECTOR MAP`
+refreshed. `dsh.client.platform` is `web`, so the skin only loads in the Web UI.
+
 > Naming: since **v2.1.0** the package is named `claude-code-theme` (unscoped).
 > Installs made with 2.0.x were named `@local/claude-code-theme`; if you are
 > migrating from one of those, remove that target first
